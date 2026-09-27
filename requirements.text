@@ -1,5 +1,3 @@
-google-genai
 streamlit
-datetime
-textwrap
-time
+google-gemini
+python-dotenv

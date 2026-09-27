@@ -62,7 +62,7 @@ with st.sidebar:
 
 # Configure page layout
 st.set_page_config(
-    page_title="AI Travel Assistant",
+    page_title="Himanshi's App",
     page_icon="✈️",
     layout="wide"
 )
