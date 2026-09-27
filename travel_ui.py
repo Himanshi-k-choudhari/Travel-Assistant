@@ -5,7 +5,7 @@
 import streamlit as st
 import textwrap
 import datetime
-import google.generativeai as genai
+import google as genai
 from dotenv import load_dotenv
 import time
 
