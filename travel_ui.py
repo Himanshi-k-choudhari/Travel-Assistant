@@ -15,7 +15,7 @@ load_dotenv()
 api_key = st.secrets.get("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=api_key)
 
-load_dotenv(r"C:\Users\Administrator\Desktop\Travel Assistant\.env")
+#load_dotenv(r"C:\Users\Administrator\Desktop\Travel Assistant\.env")
 
 client = genai.Client()
 
