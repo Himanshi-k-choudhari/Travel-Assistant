@@ -66,7 +66,7 @@ with st.sidebar:
 
 # Configure page layout
 st.set_page_config(
-    page_title="Himanshi's App",
+    page_title="AI TRAVEL ASSISTANT",
     page_icon="✈️",
     layout="wide"
 )
@@ -74,11 +74,16 @@ st.set_page_config(
 # Set full app background outside the header
 bg_image_url = "https://media.cntraveler.com/photos/67cb142a5d227df863450e65/master/w_2560%2Cc_limit/1278376286"
 
+import textwrap
+import streamlit as st
+
+# (Ensure bg_image_url is defined above this block)
+
 header_html = textwrap.dedent(f"""
 <style>
 /* Full app background */
 [data-testid="stAppViewContainer"] {{
-    background: linear-gradient(rgba(14, 17, 23, 0.85), rgba(14, 17, 23, 0.85)), 
+    background: linear-gradient(135deg, rgba(10, 15, 29, 0.88), rgba(15, 23, 42, 0.88)), 
                 url('{bg_image_url}');
     background-size: cover;
     background-position: center;
@@ -90,132 +95,134 @@ header_html = textwrap.dedent(f"""
     background-color: rgba(0, 0, 0, 0);
 }}
 
-/* Compact outer card container */
+/* Floating Hero Card with Glassmorphism */
 .hero-card {{
-    background: linear-gradient(140deg, #182A46 0%, #0D5052 100%);
-    border-radius: 20px;
-    padding: 24px 20px; /* Reduced vertical padding */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 28px 24px;
     text-align: center;
     color: #FFFFFF;
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.4);
-    margin: 0 auto 20px auto;
-    max-width: 580px; /* Smaller max-width */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.37);
+    margin: 10px auto 28px auto;
+    max-width: 600px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }}
 
-/* Compact plane Icon */
+.hero-card:hover {{
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px 0 rgba(0, 198, 255, 0.15);
+}}
+
+/* Animated Floating Icon */
 .hero-icon {{
-    font-size: 38px; /* Scaled down */
+    font-size: 42px;
     line-height: 1;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    display: inline-block;
+    filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6));
+    animation: float 3s ease-in-out infinite;
 }}
 
-/* Compact Header Title */
+@keyframes float {{
+    0% {{ transform: translateY(0px) rotate(0deg); }}
+    50% {{ transform: translateY(-8px) rotate(4deg); }}
+    100% {{ transform: translateY(0px) rotate(0deg); }}
+}}
+
+/* Gradient Header Title */
 .hero-title {{
-    font-size: 28px; /* Reduced font size */
+    font-size: 32px;
     font-weight: 800;
     margin-bottom: 6px;
-    letter-spacing: -0.5px;
-    color: #FFFFFF;
+    letter-spacing: -0.8px;
+    background: linear-gradient(135deg, #FFFFFF 30%, #38BDF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }}
 
-/* Compact Subtitle */
+/* Subtitle with Accent Pulse */
 .hero-subtitle {{
-    font-size: 14px; /* Reduced font size */
+    font-size: 15px;
     font-weight: 400;
-    color: #D1D5DB;
-    margin-bottom: 18px;
-}}
-
-/* Compact Inner Features Box */
-.features-box {{
-    background-color: #161B22;
-    border-radius: 12px;
-    padding: 14px 18px; /* Smaller inner padding */
-    margin: 0 auto;
-    max-width: 420px; /* Narrower inner box */
-    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.4);
-}}
-
-/* Compact code tag text */
-.features-code-tag {{
-    font-family: "Source Code Pro", Consolas, Monaco, monospace;
-    color: #8B949E;
-    font-size: 13px; /* Scaled down */
-    margin-bottom: 6px;
-    text-align: center;
-}}
-
-/* Compact Feature List Rows */
-.feature-item {{
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 14px; /* Reduced font size */
-    font-weight: 600;
-    color: #FFFFFF;
-    margin: 4px 0; /* Tighter spacing between items */
+    color: #94A3B8;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
 }}
 
-.feature-item span.bullet {{
-    color: #8B949E;
-    font-size: 12px;
-    margin-left: 4px;
+.live-dot {{
+    width: 8px;
+    height: 8px;
+    background-color: #10B981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10B981;
+    animation: pulse 2s infinite;
+}}
+
+@keyframes pulse {{
+    0% {{ transform: scale(0.95); opacity: 0.8; }}
+    50% {{ transform: scale(1.2); opacity: 1; }}
+    100% {{ transform: scale(0.95); opacity: 0.8; }}
+}}
+
+/* Feature Badges Container */
+.features-container {{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}}
+
+/* Glass Pill Badges */
+.feature-badge {{
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #E2E8F0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}}
+
+.feature-badge:hover {{
+    background: rgba(56, 189, 248, 0.2);
+    border-color: rgba(56, 189, 248, 0.5);
+    color: #FFFFFF;
+    transform: scale(1.03);
 }}
 </style>
 
 <div class="hero-card">
-    <div class="hero-icon">🌎</div>
+    <div class="hero-icon">✈️</div>
     <div class="hero-title">AI Travel Assistant</div>
-    <div class="hero-subtitle">Your Personal Travel Assistant</div>
+    <div class="hero-subtitle">
+        <span class="live-dot"></span> Smart Itineraries & Personal Travel Agent
+    </div>
+    <div class="features-container">
+        <div class="feature-badge">🗺️ Custom Plans</div>
+        <div class="feature-badge">⚡ Instant Recommendations</div>
+        <div class="feature-badge">💰 Budget Optimizer</div>
+    </div>
 </div>
 """)
 
 # Render header
 st.markdown(header_html, unsafe_allow_html=True)
-
 #------------------------------------------------
 #          Decor of the page
 #------------------------------------------------
 
-import streamlit as st
-
-# Direct image URLs corresponding to your 6 destinations
-images = [
-    "https://images.unsplash.com/photo-1548013146-72479768bada",  # Snow / Mountains
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",  # Nature
-    "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9",  # Desert
-    "https://images.unsplash.com/photo-1519046904884-53103b34b206",  # Beach
-    "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",  # Dubai
-    "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",  # Japan
-]
-
-# Set fixed thumbnail height so all 6 images look uniform
-st.markdown(
-    """
-    <style>
-    div[data-testid="stImage"] img {
-        height: 110px;          /* Adjust height for 6 smaller thumbnails */
-        object-fit: cover;      /* Prevents image stretching */
-        border-radius: 8px;     /* Rounded corners */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Expand the center area slightly to accommodate 6 thumbnails nicely
-left_spacer, center_content, right_spacer = st.columns([1, 4, 1])
-
-with center_content:
-    # Create 6 equal columns in one row
-    thumbnail_columns = st.columns(6, gap="small")
-    
-    # Loop through columns and images together
-    for column, image in zip(thumbnail_columns, images):
-        column.image(image, use_container_width=True)
 
 #------------------------------------------------
 #          main content
