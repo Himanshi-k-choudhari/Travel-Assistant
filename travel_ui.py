@@ -5,19 +5,17 @@
 import streamlit as st
 import textwrap
 import datetime
-import google as genai
+from google import genai
 from dotenv import load_dotenv
 import time
-import os
-
 load_dotenv()
+client = genai.Client()
 
-api_key = st.secrets.get("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
-client = genai.Client(api_key=api_key)
+
+
 
 #load_dotenv(r"C:\Users\Administrator\Desktop\Travel Assistant\.env")
 
-client = genai.Client()
 
 #------------------------------------------------
 #          setting up the background
