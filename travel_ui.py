@@ -43,6 +43,7 @@ set_bg_from_url(image_url)
 #          Side header
 #------------------------------------------------
 with st.sidebar:
+    st.markdown("🌎  ✈️  🧗")
     st.header("About App")
     st.write("Plan A Trip")
     st.write("🗺️ Discover the new possibilities to travel")
@@ -249,17 +250,20 @@ vibe_trip, region = st.columns(2)
 with vibe_trip:
     vibe_trip = st.multiselect("Choose your vibe" , ["Nature 🌲", "Cultural ⛩️" , "Adventure 🧗" , "Food and vibe 🍔", "Shoppong 🛍️ and  Souvenirs 🧸" , "All in One"])
 with region:
-    region = st.multiselect("Which Region or Weather you would prefer ?" , ["Beach 🏖️" , "Mountains 🏔️" , "Snow 🏂" , "Desert 🏜️" , "Not Sure Yet"])
+    region = st.multiselect("Which Region or Weather you would prefer ?" , ["Beach 🏖️" , "Mountains 🏔️" , "Snow 🏂" , "Desert 🏜️" ,"Star gazing🌌", "Not Sure Yet"])
 
 
 #------------------------------------------------
 #          Prompt
 #------------------------------------------------
 
-prompt = f"""You are a travel planar , user that is {name} wants to go to {destination} , on {date_trip} for {num_days}.
+prompt = f"""You are a travel planar , user that is {name} wants to go to {destination} , on {date_trip} for {num_days} days.
 travel type is :{type_trip}
 user's budget is :{budget}
-user is traveling : {who_travel}
+user is traveling : {who_travel} with total {num_travelers} travelers
+hotel suggestion required : {hotel_sug}
+vibe of trip : {", ".join(vibe_trip) if isinstance(vibe_trip, list) else vibe_trip}
+preferred region/weather : {", ".join(region) if isinstance(region, list) else region}
 plan a trip and share the answer in bullet form."""
 
 #------------------------------------------------
@@ -273,9 +277,11 @@ if st.button("Plan Trip"):
         )
 
     with st.spinner("Wait for it...", show_time=True):
-        time.sleep(5)
+        time.sleep(3)
 
     st.success("Wohh !! Pack your bags, and get ready for the trip.....")
     st.write(interaction.output_text)
     st.success("🎉 Trip planned Successfuly !! 🎉")
+    st.divider()
+    st.caption("AI can make mistakes o please double check")
     
