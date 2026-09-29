@@ -1,6 +1,6 @@
 # AI Travel Assistant
 
-A smart travel planning app built with Python and Streamlit. It helps users generate travel ideas based on destination, duration, budget, trip type, travel companions, and preferred vibes using Google Gemini.
+A smart travel planning app built with Python, Generative AI and Streamlit. It helps users generate travel ideas based on destination, duration, budget, trip type, travel companions, and preferred vibes using Google Gemini.
 
 ## Overview
 
